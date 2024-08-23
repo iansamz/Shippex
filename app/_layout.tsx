@@ -37,7 +37,7 @@ export default function RootLayout() {
         <Stack.Screen
           name="login"
           options={{
-            title: "",
+            headerShown: false,
             presentation: "modal",
           }}
         />

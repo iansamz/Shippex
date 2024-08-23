@@ -1,11 +1,20 @@
 import { Tabs } from "expo-router";
 import React from "react";
 
-import { TabBarIcon } from "@/components/navigation/TabBarIcon";
 import { Colors } from "@/constants/Colors";
 import { useColorScheme } from "@/hooks/useColorScheme";
+import {
+  ProfileIcon,
+  ProfileOutlineIcon,
+  ScanIcon,
+  ScanOutlineIcon,
+  ShipmentIcon,
+  ShipmentOutlineIcon,
+  WalletIcon,
+  WalletOutlineIcon,
+} from "@/components/icons";
 
-export default function TabLayout() {
+const TabLayout = () => {
   const colorScheme = useColorScheme();
 
   return (
@@ -19,50 +28,52 @@ export default function TabLayout() {
         name="shipments"
         options={{
           title: "Shipments",
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon
-              name={focused ? "home" : "home-outline"}
-              color={color}
-            />
-          ),
+          tabBarIcon: ({ color, focused }) =>
+            focused ? (
+              <ShipmentIcon color={color} />
+            ) : (
+              <ShipmentOutlineIcon color={color} />
+            ),
         }}
       />
       <Tabs.Screen
         name="scan"
         options={{
           title: "Scan",
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon
-              name={focused ? "code-slash" : "code-slash-outline"}
-              color={color}
-            />
-          ),
+          tabBarIcon: ({ color, focused }) =>
+            focused ? (
+              <ScanIcon color={color} />
+            ) : (
+              <ScanOutlineIcon color={color} />
+            ),
         }}
       />
       <Tabs.Screen
         name="wallet"
         options={{
           title: "Wallet",
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon
-              name={focused ? "code-slash" : "code-slash-outline"}
-              color={color}
-            />
-          ),
+          tabBarIcon: ({ color, focused }) =>
+            focused ? (
+              <WalletIcon color={color} />
+            ) : (
+              <WalletOutlineIcon color={color} />
+            ),
         }}
       />
       <Tabs.Screen
         name="profile"
         options={{
           title: "Profile",
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon
-              name={focused ? "code-slash" : "code-slash-outline"}
-              color={color}
-            />
-          ),
+          tabBarIcon: ({ color, focused }) =>
+            focused ? (
+              <ProfileIcon color={color} />
+            ) : (
+              <ProfileOutlineIcon color={color} />
+            ),
         }}
       />
     </Tabs>
   );
-}
+};
+
+export default TabLayout;
