@@ -1,17 +1,29 @@
 import { Text, Pressable } from "react-native";
 import React from "react";
-import { Link } from "expo-router";
+import { useRouter } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useLoginMutation } from "@/store/services/api";
 
 const Login = () => {
+  const router = useRouter();
+  const [signIn, { isLoading }] = useLoginMutation();
+
+  const handleLogin = async () => {
+    await signIn({
+      usr: "test@brandimic.com",
+      pwd: "testy123@",
+    }).unwrap();
+
+    router.replace("/(tabs)/shipments");
+  };
+
   return (
     <SafeAreaView>
       <Text>Login Page</Text>
-      <Link href="/shipments" asChild>
-        <Pressable>
-          <Text>Login</Text>
-        </Pressable>
-      </Link>
+
+      <Pressable onPress={handleLogin}>
+        <Text>Login</Text>
+      </Pressable>
     </SafeAreaView>
   );
 };
