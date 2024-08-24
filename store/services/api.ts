@@ -3,27 +3,32 @@ import { AuthResponse, LoginRequest, LoginResponse } from "@/types/auth";
 import {
   ShipmentListRequest,
   ShipmentListResponse,
-  ShipmentStatusListRequest,
   ShipmentStatusListResponse,
 } from "@/types/shipment";
+import {
+  API_SHIPMENT_LIST_DOCTYPE,
+  API_SHIPMENT_STATUS_LIST_DOCTYPE,
+  API_URL,
+  endpoints,
+} from "@/constants/Api";
 
 // Define a service using a base URL and expected endpoints
 export const shippexApi = createApi({
   reducerPath: "shippexApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://shippex-demo.bc.brandimic.com/api/method",
+    baseUrl: API_URL,
   }),
   endpoints: (builder) => ({
     login: builder.mutation<LoginResponse, LoginRequest>({
       query: ({ usr, pwd }) => ({
-        url: `/login`,
+        url: endpoints.login,
         method: "POST",
         body: { usr, pwd },
       }),
     }),
     logout: builder.mutation<void, void>({
       query: () => ({
-        url: `/logout`,
+        url: endpoints.logout,
         method: "POST",
       }),
     }),
@@ -40,7 +45,7 @@ export const shippexApi = createApi({
           fields: string[];
           filters?: string;
         } = {
-          doctype: "AWB",
+          doctype: API_SHIPMENT_LIST_DOCTYPE,
           fields: fields ? fields : ["*"],
         };
 
@@ -49,22 +54,19 @@ export const shippexApi = createApi({
         }
 
         return {
-          url: `/frappe.client.get_list`,
+          url: endpoints.getShipmentList,
           method: "GET",
           params,
         };
       },
     }),
-    getShipmentStatusList: builder.query<
-      ShipmentStatusListResponse,
-      ShipmentStatusListRequest
-    >({
-      query: ({ fields }) => ({
-        url: `/frappe.client.get_list`,
+    getShipmentStatusList: builder.query<ShipmentStatusListResponse, void>({
+      query: () => ({
+        url: endpoints.getShipmentList,
         method: "GET",
         params: {
-          doctype: "AWB Status",
-          fields: fields ? fields : ["*"],
+          doctype: API_SHIPMENT_STATUS_LIST_DOCTYPE,
+          fields: JSON.stringify(["name", "color"]),
         },
       }),
     }),

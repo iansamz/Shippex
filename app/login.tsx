@@ -22,7 +22,7 @@ const Login = () => {
       <Text>Login Page</Text>
 
       <Pressable onPress={handleLogin}>
-        <Text>Login</Text>
+        <Text>{isLoading ? "Loading..." : "Login"}</Text>
       </Pressable>
     </SafeAreaView>
   );
