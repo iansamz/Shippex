@@ -37,7 +37,11 @@ const Button = ({
   const buttonStyleVariant = [
     styles.button,
     variant === "primary" ? styles.primaryButton : styles.secondaryButton,
-    disabled ? (variant === "primary" ? styles.primaryButtonDisabled : styles.secondaryButtonDisabled) : {},
+    disabled
+      ? variant === "primary"
+        ? styles.primaryButtonDisabled
+        : styles.secondaryButtonDisabled
+      : {},
     style,
   ];
 
@@ -46,7 +50,11 @@ const Button = ({
     variant === "primary"
       ? styles.primaryButtonText
       : styles.secondaryButtonText,
-    disabled ? (variant === "primary" ? styles.primaryButtonDisabledText : styles.secondaryButtonDisabledText) : {},
+    disabled
+      ? variant === "primary"
+        ? styles.primaryButtonDisabledText
+        : styles.secondaryButtonDisabledText
+      : {},
     textStyle,
   ];
 
@@ -106,12 +114,12 @@ const styles = StyleSheet.create({
   primaryButtonDisabledText: {
     color: Colors.button.primary.disabledText,
   },
-  
+
   secondaryButton: {
     backgroundColor: Colors.button.secondary.background,
   },
   secondaryButtonText: {
-    color: Colors.button.secondary.text
+    color: Colors.button.secondary.text,
   },
   secondaryButtonPressed: {
     backgroundColor: Colors.button.secondary.pressedBackground,

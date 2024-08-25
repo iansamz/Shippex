@@ -40,8 +40,7 @@ export const Colors = {
       text: "white",
       pressedBackground: royalBlue500,
       disabled: ritual200,
-      disabledText: ritual400
-
+      disabledText: ritual400,
     },
     secondary: {
       background: "white",
@@ -50,5 +49,5 @@ export const Colors = {
       disabled: ritual100,
       disabledText: ritual300,
     },
-  }
+  },
 };

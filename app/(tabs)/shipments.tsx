@@ -13,7 +13,7 @@ export default function ShipmentsScreen() {
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState("");
   const [statusFilters, setStatusFilters] = useState<string[]>([]);
   const [selectedStatusFilters, setSelectedStatusFilters] = useState<string[]>(
-    []
+    [],
   );
 
   const {
@@ -29,6 +29,7 @@ export default function ShipmentsScreen() {
     },
   });
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const debouncer = useCallback(debounce(setDebouncedSearchTerm, 500), []);
   const snapPoints = useMemo(() => ["30%"], []);
   const bottomSheetRef = useRef<BottomSheet>(null);
@@ -59,7 +60,7 @@ export default function ShipmentsScreen() {
   const onSelectStatusFilter = (status: string) => {
     if (selectedStatusFilters.includes(status)) {
       setSelectedStatusFilters((prev) =>
-        prev.filter((item) => item !== status)
+        prev.filter((item) => item !== status),
       );
     } else {
       setSelectedStatusFilters((prev) => [...prev, status]);

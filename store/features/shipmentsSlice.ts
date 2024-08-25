@@ -21,7 +21,7 @@ const shipmentsSlice = createSlice({
 
     setCategoryTerm: (
       state,
-      action: PayloadAction<{ categoryTerm: string }>
+      action: PayloadAction<{ categoryTerm: string }>,
     ) => {
       state.searchTerm = "";
       state.categoryTerm = [...state.categoryTerm, action.payload.categoryTerm];
@@ -29,10 +29,10 @@ const shipmentsSlice = createSlice({
 
     removeCategoryTerm: (
       state,
-      action: PayloadAction<{ categoryTerm: string }>
+      action: PayloadAction<{ categoryTerm: string }>,
     ) => {
       state.categoryTerm = state.categoryTerm.filter(
-        (term) => term !== action.payload.categoryTerm
+        (term) => term !== action.payload.categoryTerm,
       );
     },
 
