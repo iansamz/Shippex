@@ -1,9 +1,9 @@
 import { StyleSheet, TextInput } from "react-native";
 import React from "react";
+import { Colors } from "../constants/Colors";
 
 export interface InputProps {
   placeHolder: string;
-  placeHolderTextColor: string;
   style?: any;
   value: string;
   onChangeText: (text: string) => void;
@@ -12,43 +12,93 @@ export interface InputProps {
   autoCapitalize?: "none" | "sentences" | "words" | "characters";
   maxLength?: number;
   editable?: boolean;
+  prefix?: React.ReactNode;
 }
+
+// interface InputReference extends TextInput {
+//   value: string;
+// }
 
 const Input = ({
   placeHolder,
-  placeHolderTextColor,
   style,
   value,
   onChangeText,
-  keyboardType,
-  secureTextEntry,
-  autoCapitalize,
-  maxLength,
-  editable,
+  ...props
 }: InputProps) => {
+  // const [isFocused, setIsFocused] = useState(false);
+  // const [isFilled, setIsFilled] = useState(false);
+
+  // const inputRef = useRef<InputReference>(null);
+
+  // const handleInputFocus = useCallback(() => {
+  //   setIsFocused(true);
+  // }, []);
+
+  // const handleInputBlur = useCallback(() => {
+  //   setIsFocused(false);
+
+  //   if (inputRef.current) setIsFilled(!!inputRef.current.value);
+  // }, []);
+
+  // const handleChangeText = useCallback((text: string) => {
+  //   if (inputRef.current) inputRef.current.value = text;
+  // }, []);
+
   return (
     <TextInput
       style={[styles.input, style]}
       placeholder={placeHolder}
-      placeholderTextColor={placeHolderTextColor}
+      placeholderTextColor={Colors.ritual400}
       value={value}
       onChangeText={onChangeText}
-      keyboardType={keyboardType}
-      secureTextEntry={secureTextEntry}
-      autoCapitalize={autoCapitalize}
-      maxLength={maxLength}
-      editable={editable}
+      {...props}
     />
+    // <View style={styles.container}>
+    //   <Text
+    //     style={[styles.label, isFilled || isFilled ? styles.labelTouched : {}]}
+    //     onPress={() => setIsFocused(!isFocused)}
+    //   >
+    //     {placeHolder}
+    //   </Text>
+    // </View>
   );
 };
 
 const styles = StyleSheet.create({
   input: {
-    padding: 7,
-    width: "90%",
-    borderWidth: 2,
-    borderRadius: 12,
+    color: Colors.primary,
+    backgroundColor: Colors.ritual100,
+    width: "100%",
+    paddingHorizontal: 10,
+    paddingVertical: 20,
+    borderRadius: 10,
   },
+  // container: {
+  //   backgroundColor: Colors.ritual200,
+  //   width: "100%",
+  //   paddingHorizontal: 10,
+  //   paddingVertical: 20,
+  //   borderRadius: 10,
+  // },
+  // label: {
+  //   color: Colors.ritual400,
+  //   width: "100%",
+  //   transform: [{ translateY: +25 }],
+  //   fontSize: 16,
+  // },
+  // labelTouched: {
+  //   transform: [{ translateY: -20 }],
+  //   fontSize: 12,
+  // },
+  // input: {
+  //   color: Colors.primary,
+  //   flex: 1,
+  //   fontSize: 17,
+  //   padding: 0,
+  //   margin: 0,
+  //   width: "100%",
+  // },
 });
 
 export default Input;

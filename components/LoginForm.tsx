@@ -1,14 +1,18 @@
 import { Text, View, StyleSheet } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { useRouter } from "expo-router";
 import { useLoginMutation } from "@/store/services/api";
 import Title from "@/components/typography/Title";
 import { Colors } from "@/constants/Colors";
 import Button from "@/components/Button";
+import Input from "./Input";
 
 const LoginForm = () => {
   const router = useRouter();
   const [signIn, { isLoading }] = useLoginMutation();
+
+  const [username, setUsername] = useState("test@brandimic.com");
+  const [password, setPassword] = useState("testy123@");
 
   const handleLogin = async () => {
     await signIn({
@@ -29,7 +33,19 @@ const LoginForm = () => {
         </Text>
       </View>
 
-      <View style={styles.formContainer}></View>
+      <View style={styles.formContainer}>
+        <Input
+          placeHolder="Username / Email"
+          value={username}
+          onChangeText={(text: string) => setUsername(text)}
+        />
+        <Input
+          placeHolder="password"
+          value={password}
+          secureTextEntry
+          onChangeText={(text: string) => setPassword(text)}
+        />
+      </View>
       <View style={styles.buttonContainer}>
         <Button title="Login" onPress={handleLogin} loading={isLoading} />
       </View>
