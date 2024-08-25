@@ -122,67 +122,73 @@ const Shipment = ({ shipment }: ShipmentProps) => {
           </Pressable>
         </View>
       </View>
-      <Animated.View style={[styles.expandedContent, animatedStyle]}>
-        <View style={styles.expandedContent}>
-          <View style={styles.expandedContentRow}>
-            <View>
-              <Text style={styles.expandedContentTitle}>Origin</Text>
-              <Text style={styles.expandedContentCity}>
-                {shipment.origin_city}
-              </Text>
-              <Text style={styles.expandedContentAddress}>
-                {shipment.origin_country}
-              </Text>
+      {expanded && (
+        <Animated.View style={[styles.expandedContent, animatedStyle]}>
+          <View style={styles.expandedContent}>
+            <View style={styles.expandedContentRow}>
+              <View>
+                <Text style={styles.expandedContentTitle}>Origin</Text>
+                <Text style={styles.expandedContentCity}>
+                  {shipment.origin_city}
+                </Text>
+                <Text style={styles.expandedContentAddress}>
+                  {shipment.origin_country}
+                </Text>
+              </View>
+              <View>
+                <MaterialCommunityIcons
+                  name="arrow-right"
+                  color={Colors.primary}
+                  size={30}
+                />
+              </View>
+              <View>
+                <Text style={styles.expandedContentTitle}>Destination</Text>
+                <Text style={styles.expandedContentCity}>
+                  {shipment.destination_city}
+                </Text>
+                <Text style={styles.expandedContentAddress}>
+                  {shipment.destination_country}
+                </Text>
+              </View>
             </View>
-            <View>
-              <MaterialCommunityIcons
-                name="arrow-right"
-                color={Colors.primary}
-                size={30}
+            <View style={styles.expandedContentBtnsContainer}>
+              <Button
+                title="Call"
+                style={[
+                  styles.expandedContentBtn,
+                  {
+                    backgroundColor: Colors.royalBlue200,
+                  },
+                ]}
+                iconLeft={
+                  <MaterialCommunityIcons
+                    name="phone"
+                    color="white"
+                    size={24}
+                  />
+                }
+              />
+              <Button
+                title="WhatsApp"
+                style={[
+                  styles.expandedContentBtn,
+                  {
+                    backgroundColor: Colors.whatsappGreen,
+                  },
+                ]}
+                iconLeft={
+                  <MaterialCommunityIcons
+                    name="whatsapp"
+                    color="white"
+                    size={24}
+                  />
+                }
               />
             </View>
-            <View>
-              <Text style={styles.expandedContentTitle}>Destination</Text>
-              <Text style={styles.expandedContentCity}>
-                {shipment.destination_city}
-              </Text>
-              <Text style={styles.expandedContentAddress}>
-                {shipment.destination_country}
-              </Text>
-            </View>
           </View>
-          <View style={styles.expandedContentBtnsContainer}>
-            <Button
-              title="Call"
-              style={[
-                styles.expandedContentBtn,
-                {
-                  backgroundColor: Colors.royalBlue200,
-                },
-              ]}
-              iconLeft={
-                <MaterialCommunityIcons name="phone" color="white" size={24} />
-              }
-            />
-            <Button
-              title="WhatsApp"
-              style={[
-                styles.expandedContentBtn,
-                {
-                  backgroundColor: Colors.whatsappGreen,
-                },
-              ]}
-              iconLeft={
-                <MaterialCommunityIcons
-                  name="whatsapp"
-                  color="white"
-                  size={24}
-                />
-              }
-            />
-          </View>
-        </View>
-      </Animated.View>
+        </Animated.View>
+      )}
     </View>
   );
 };
