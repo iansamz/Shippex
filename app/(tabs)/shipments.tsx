@@ -81,7 +81,6 @@ export default function ShipmentsScreen() {
   };
 
   const onCancelFiltering = () => {
-    console.log("onCancelFiltering");
     setSelectedStatusFilters([]);
     setStatusFilters([]);
     handleCloseBottomSheet();
