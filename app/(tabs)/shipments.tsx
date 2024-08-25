@@ -156,5 +156,6 @@ const styles = StyleSheet.create({
   },
   btn: {
     flex: 1,
+    paddingVertical: 10,
   },
 });

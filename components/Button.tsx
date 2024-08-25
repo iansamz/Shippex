@@ -92,7 +92,7 @@ const Button = ({
 const styles = StyleSheet.create({
   // defaults
   button: {
-    paddingVertical: 15,
+    paddingVertical: 20,
     paddingHorizontal: 20,
     borderRadius: 10,
     flexDirection: "row",
