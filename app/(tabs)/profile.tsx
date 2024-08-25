@@ -1,4 +1,4 @@
-import { Text, Pressable, StyleSheet, View } from "react-native";
+import { Text, StyleSheet, View } from "react-native";
 import React from "react";
 import { useRouter } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -7,8 +7,8 @@ import {
   useLogoutMutation,
 } from "@/store/services/api";
 import PageLoading from "@/components/PageLoading";
-import Button from "../../components/Button";
-import Title from "../../components/typography/Title";
+import Button from "@/components/Button";
+import Title from "@/components/typography/Title";
 
 const Profile = () => {
   const router = useRouter();

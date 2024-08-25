@@ -13,10 +13,10 @@ import { Shipment as ShipmentType } from "@/types/shipment";
 import { Colors } from "@/constants/Colors";
 import { API_SHIPMENT_LIST_DOCTYPE } from "@/constants/Api";
 import { ExpandIcon } from "@/components/icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import CheckBox from "../CheckBox";
 import Tag, { TagVariant } from "../Tag";
 import Title from "../typography/Title";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
 import Button from "../Button";
 
 const boxImage = require("@/assets/images/box.png");
@@ -99,7 +99,16 @@ const Shipment = ({ shipment }: ShipmentProps) => {
               {API_SHIPMENT_LIST_DOCTYPE}
             </Text>
             <Title variant={14}>{shipment.name}</Title>
-            <Text style={styles.detailsCities}>{cities}</Text>
+            <View style={styles.detailsCitiesContainer}>
+              <Text style={styles.detailsCities}>{shipment.origin_city}</Text>
+              <MaterialCommunityIcons
+                name="arrow-right"
+                color={Colors.primary}
+              />
+              <Text style={styles.detailsCities}>
+                {shipment.destination_city}
+              </Text>
+            </View>
           </View>
         </View>
         <View style={[styles.section]}>
@@ -227,6 +236,12 @@ const styles = StyleSheet.create({
     textTransform: "capitalize",
     fontSize: 13,
     color: Colors.ritual500,
+  },
+  detailsCitiesContainer: {
+    flexDirection: "row",
+    alignContent: "center",
+    alignItems: "center",
+    gap: 4,
   },
   boxImageContainer: {
     flex: 0,
