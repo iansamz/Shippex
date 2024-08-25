@@ -299,6 +299,7 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     gap: 10,
     justifyContent: "flex-end",
+    paddingTop: 10,
   },
   expandedContentBtn: {
     width: "auto",
@@ -307,6 +308,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     gap: 5,
     borderRadius: 18,
+    paddingVertical: 15,
   },
 });
 
