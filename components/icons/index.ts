@@ -6,3 +6,4 @@ export * from "./ChevronLeftIcon";
 export * from "./BellIcon";
 export * from "./FilterIcon";
 export * from "./AddScanIcon";
+export * from "./ExpandIcon";

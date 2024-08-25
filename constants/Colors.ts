@@ -16,16 +16,35 @@ const ritual300 = "#CDCAD9";
 const ritual400 = "#A7A3B3";
 const ritual500 = "#757281";
 const ritual600 = "#58536E";
+const ritual700 = "#3F395C";
+
+const krasnyiRed100 = "#FEE3D4";
+const krasnyiRed600 = "#D12030";
+
+const dryGreen100 = "#E3FAD6";
+const dryGreen600 = "#208D28";
+
+const everSongOrange100 = "#FFF3D5";
+const everSongOrange600 = "#DB7E21";
 
 export const Colors = {
   primary: royalBlue600,
   royalBlue100,
   royalBlue500,
+  royalBlue600,
   ritual100,
   ritual200,
   ritual300,
   ritual400,
   ritual500,
+  ritual600,
+  ritual700,
+  krasnyiRed100,
+  krasnyiRed600,
+  dryGreen100,
+  dryGreen600,
+  everSongOrange100,
+  everSongOrange600,
   light: {
     text: "#11181C",
     background: "#fff",

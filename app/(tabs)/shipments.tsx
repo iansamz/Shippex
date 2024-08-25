@@ -1,5 +1,5 @@
-import { useCallback, useMemo, useRef, useState } from "react";
-import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
+import { useCallback, useRef, useState } from "react";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { debounce } from "lodash";
 import BottomSheet from "@gorhom/bottom-sheet";
@@ -13,6 +13,7 @@ import Input from "@/components/Input";
 import Button from "@/components/Button";
 import { AddScanIcon, FilterIcon } from "@/components/icons";
 import CustomBottomSheet from "@/components/CustomBottomSheet";
+import Shipments from "@/components/shipments/Shipments";
 
 export default function ShipmentsScreen() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -28,16 +29,16 @@ export default function ShipmentsScreen() {
     isLoading: statusIsLoading,
   } = useGetShipmentStatusListQuery();
 
-  const { data, error, isLoading } = useGetShipmentListQuery({
-    filters: {
-      name: ["like", `%${debouncedSearchTerm}%`],
-      status: ["in", statusFilters],
-    },
-  });
+  const { data, error, isLoading, refetch, isFetching } =
+    useGetShipmentListQuery({
+      filters: {
+        name: ["like", `%${debouncedSearchTerm}%`],
+        status: ["in", statusFilters],
+      },
+    });
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const debouncer = useCallback(debounce(setDebouncedSearchTerm, 500), []);
-  const snapPoints = useMemo(() => ["30%"], []);
   const bottomSheetRef = useRef<BottomSheet>(null);
 
   if (isLoading || statusIsLoading) {
@@ -106,25 +107,13 @@ export default function ShipmentsScreen() {
         />
       </View>
 
+      <Shipments
+        shipments={data.message}
+        refetch={refetch}
+        isRefetching={isFetching}
+      />
+
       <CustomBottomSheet ref={bottomSheetRef} snaps={["40%"]}>
-        {/* <LoginForm /> */}
-      </CustomBottomSheet>
-
-      {/* <Text>Home</Text>
-      <TextInput value={searchTerm} onChangeText={onSearchTermChange} />
-      <Button title="Open Bottom Sheet" onPress={handleOpenBottomSheet} />
-
-      {data.message.map((shipment, index) => {
-        return <Text key={`${shipment.idx}-${index}`}>{shipment.name}</Text>;
-      })}
-
-      <BottomSheet
-        ref={bottomSheetRef}
-        snapPoints={snapPoints}
-        index={0}
-        enablePanDownToClose={true}
-      >
-        <Button title="Done" onPress={onSelectedStatusFilters} />
         {statuses?.message.map((status, index) => (
           <Pressable
             key={`${status.idx}-${index}`}
@@ -133,7 +122,7 @@ export default function ShipmentsScreen() {
             <Text>{status.name}</Text>
           </Pressable>
         ))}
-      </BottomSheet> */}
+      </CustomBottomSheet>
     </SafeAreaView>
   );
 }

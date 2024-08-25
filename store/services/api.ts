@@ -39,14 +39,14 @@ export const shippexApi = createApi({
       }),
     }),
     getShipmentList: builder.query<ShipmentListResponse, ShipmentListRequest>({
-      query: ({ filters, fields }) => {
+      query: ({ filters }) => {
         let params: {
           doctype: string;
           fields: string[];
           filters?: string;
         } = {
           doctype: API_SHIPMENT_LIST_DOCTYPE,
-          fields: fields ? fields : ["*"],
+          fields: ["*"],
         };
 
         if (filters) {

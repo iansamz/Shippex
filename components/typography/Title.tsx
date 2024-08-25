@@ -3,7 +3,7 @@ import { StyleSheet, Text, TextProps } from "react-native";
 import { MAX_FONT_SIZE_MULTIPLIER } from "@/constants/Typography";
 
 interface TitleProps extends TextProps {
-  variant?: 34 | 24 | 20 | 16 | 14 | 12 | 10;
+  variant?: 34 | 24 | 20 | 18 | 16 | 14 | 12 | 10;
 }
 
 const Title = ({
