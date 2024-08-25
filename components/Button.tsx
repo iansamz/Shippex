@@ -10,7 +10,7 @@ import { Colors } from "@/constants/Colors";
 export interface ButtonProps {
   onPress?: () => void;
   onLongPress?: () => void;
-  variant?: "primary" | "secondary";
+  variant?: "primary" | "secondary" | "tertiary";
   title: string;
   iconLeft?: React.ReactNode;
   iconRight?: React.ReactNode;
@@ -36,11 +36,17 @@ const Button = ({
 }: ButtonProps) => {
   const buttonStyleVariant = [
     styles.button,
-    variant === "primary" ? styles.primaryButton : styles.secondaryButton,
+    variant === "primary"
+      ? styles.primaryButton
+      : variant === "secondary"
+        ? styles.secondaryButton
+        : styles.tertiaryButton,
     disabled
       ? variant === "primary"
         ? styles.primaryButtonDisabled
-        : styles.secondaryButtonDisabled
+        : variant === "secondary"
+          ? styles.secondaryButtonDisabled
+          : styles.tertiaryButtonDisabled
       : {},
     style,
   ];
@@ -49,11 +55,15 @@ const Button = ({
     styles.buttonText,
     variant === "primary"
       ? styles.primaryButtonText
-      : styles.secondaryButtonText,
+      : variant === "secondary"
+        ? styles.secondaryButtonText
+        : styles.tertiaryButtonText,
     disabled
       ? variant === "primary"
         ? styles.primaryButtonDisabledText
-        : styles.secondaryButtonDisabledText
+        : variant === "secondary"
+          ? styles.secondaryButtonDisabledText
+          : {}
       : {},
     textStyle,
   ];
@@ -89,6 +99,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     width: "100%",
+    gap: 5,
+    position: "relative",
   },
   disabledButton: {
     backgroundColor: Colors.button.primary.disabled,
@@ -129,6 +141,19 @@ const styles = StyleSheet.create({
   },
   secondaryButtonDisabledText: {
     color: Colors.button.secondary.disabledText,
+  },
+
+  tertiaryButton: {
+    backgroundColor: Colors.button.tertiary.background,
+  },
+  tertiaryButtonText: {
+    color: Colors.button.tertiary.text,
+  },
+  tertiaryButtonPressed: {
+    backgroundColor: Colors.button.tertiary.pressedBackground,
+  },
+  tertiaryButtonDisabled: {
+    backgroundColor: Colors.button.tertiary.disabled,
   },
 });
 

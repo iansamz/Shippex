@@ -1,6 +1,7 @@
 import { View, StyleSheet, Text, Pressable } from "react-native";
-import React, { forwardRef, useMemo } from "react";
+import React, { forwardRef, useCallback, useMemo } from "react";
 import BottomSheet, {
+  BottomSheetBackdrop,
   BottomSheetView,
   useBottomSheet,
 } from "@gorhom/bottom-sheet";
@@ -19,7 +20,6 @@ const CloseBtn = () => {
 
   return (
     <Pressable style={styles.closeBtn} onPress={() => close()}>
-      <ChevronDownLeftIcon />
       <Text style={styles.closeBtnText}>Cancel</Text>
     </Pressable>
   );
@@ -28,6 +28,16 @@ const CloseBtn = () => {
 const CustomBottomSheet = forwardRef<Ref, Props>(
   ({ children, snaps = ["25", "50", "75"], ...props }, ref) => {
     const snapPoints = useMemo(() => snaps, [snaps]);
+    const renderBackdrop = useCallback(
+      (props: any) => (
+        <BottomSheetBackdrop
+          {...props}
+          appearsOnIndex={0}
+          disappearsOnIndex={-1}
+        />
+      ),
+      [],
+    );
 
     return (
       <BottomSheet
@@ -35,6 +45,7 @@ const CustomBottomSheet = forwardRef<Ref, Props>(
         index={-1}
         snapPoints={snapPoints}
         enablePanDownToClose={true}
+        backdropComponent={renderBackdrop}
         {...props}
       >
         <BottomSheetView style={styles.contentContainer}>

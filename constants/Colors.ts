@@ -15,6 +15,7 @@ const ritual200 = "#EAE7F2";
 const ritual300 = "#CDCAD9";
 const ritual400 = "#A7A3B3";
 const ritual500 = "#757281";
+const ritual600 = "#58536E";
 
 export const Colors = {
   primary: royalBlue600,
@@ -52,6 +53,13 @@ export const Colors = {
     secondary: {
       background: "white",
       text: royalBlue600,
+      pressedBackground: royalBlue100,
+      disabled: ritual100,
+      disabledText: ritual300,
+    },
+    tertiary: {
+      background: ritual100,
+      text: ritual600,
       pressedBackground: royalBlue100,
       disabled: ritual100,
       disabledText: ritual300,

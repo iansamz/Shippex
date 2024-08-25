@@ -73,6 +73,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 20,
     borderRadius: 10,
+    fontSize: 17,
   },
   // container: {
   //   backgroundColor: Colors.ritual200,

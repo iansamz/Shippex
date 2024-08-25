@@ -7,7 +7,7 @@ import Button from "@/components/Button";
 import CustomBottomSheet from "@/components/CustomBottomSheet";
 import LoginForm from "@/components/LoginForm";
 
-const logo = require("@/assets/images/logo-full.png");
+const logo = require("@/assets/images/logo-white.png");
 
 const Home = () => {
   const bottomSheetRef = useRef<BottomSheetModal>(null);

@@ -1,5 +1,5 @@
 import { useCallback, useMemo, useRef, useState } from "react";
-import { Button, Pressable, StyleSheet, Text, TextInput } from "react-native";
+import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { debounce } from "lodash";
 import BottomSheet from "@gorhom/bottom-sheet";
@@ -7,6 +7,12 @@ import {
   useGetShipmentListQuery,
   useGetShipmentStatusListQuery,
 } from "@/store/services/api";
+import Header from "@/components/shipments/Header";
+import Intro from "@/components/shipments/Intro";
+import Input from "@/components/Input";
+import Button from "@/components/Button";
+import { AddScanIcon, FilterIcon } from "@/components/icons";
+import CustomBottomSheet from "@/components/CustomBottomSheet";
 
 export default function ShipmentsScreen() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -77,7 +83,34 @@ export default function ShipmentsScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text>Home</Text>
+      <Header />
+      <Intro />
+      <Input
+        value={searchTerm}
+        onChangeText={onSearchTermChange}
+        placeHolder="Search"
+      />
+      <View style={styles.btnsContainer}>
+        <Button
+          title="Filter"
+          variant="tertiary"
+          iconLeft={<FilterIcon />}
+          onPress={handleOpenBottomSheet}
+          style={styles.btn}
+        />
+        <Button
+          title="Add Scan"
+          iconLeft={<AddScanIcon />}
+          onPress={() => {}}
+          style={styles.btn}
+        />
+      </View>
+
+      <CustomBottomSheet ref={bottomSheetRef} snaps={["40%"]}>
+        {/* <LoginForm /> */}
+      </CustomBottomSheet>
+
+      {/* <Text>Home</Text>
       <TextInput value={searchTerm} onChangeText={onSearchTermChange} />
       <Button title="Open Bottom Sheet" onPress={handleOpenBottomSheet} />
 
@@ -100,7 +133,7 @@ export default function ShipmentsScreen() {
             <Text>{status.name}</Text>
           </Pressable>
         ))}
-      </BottomSheet>
+      </BottomSheet> */}
     </SafeAreaView>
   );
 }
@@ -108,6 +141,18 @@ export default function ShipmentsScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 16,
+    padding: 14,
+    backgroundColor: "#fff",
+  },
+  btnsContainer: {
+    marginTop: 20,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    gap: 20,
+    position: "relative",
+  },
+  btn: {
+    flex: 1,
   },
 });
