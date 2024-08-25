@@ -7,9 +7,11 @@ const tintColorLight = "#0a7ea4";
 const tintColorDark = "#fff";
 
 const royalBlue100 = "#E6E9F0";
+const royalBlue200 = "#6e91ec";
 const royalBlue500 = "#4169E1";
 const royalBlue600 = "#2F50C1";
 
+const ritual50 = "#f9f8fb";
 const ritual100 = "#F4F2F8";
 const ritual200 = "#EAE7F2";
 const ritual300 = "#CDCAD9";
@@ -23,6 +25,7 @@ const krasnyiRed600 = "#D12030";
 
 const dryGreen100 = "#E3FAD6";
 const dryGreen600 = "#208D28";
+const whatsappGreen = "#26d366";
 
 const everSongOrange100 = "#FFF3D5";
 const everSongOrange600 = "#DB7E21";
@@ -30,8 +33,10 @@ const everSongOrange600 = "#DB7E21";
 export const Colors = {
   primary: royalBlue600,
   royalBlue100,
+  royalBlue200,
   royalBlue500,
   royalBlue600,
+  ritual50,
   ritual100,
   ritual200,
   ritual300,
@@ -43,6 +48,7 @@ export const Colors = {
   krasnyiRed600,
   dryGreen100,
   dryGreen600,
+  whatsappGreen,
   everSongOrange100,
   everSongOrange600,
   light: {
