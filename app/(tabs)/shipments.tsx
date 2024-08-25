@@ -1,5 +1,5 @@
 import { useCallback, useRef, useState } from "react";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { debounce } from "lodash";
 import BottomSheet from "@gorhom/bottom-sheet";
@@ -14,6 +14,7 @@ import Button from "@/components/Button";
 import { AddScanIcon, FilterIcon } from "@/components/icons";
 import CustomBottomSheet from "@/components/CustomBottomSheet";
 import Shipments from "@/components/shipments/Shipments";
+import ShipmentStatusFilters from "../../components/shipments/ShipmentStatusFilters";
 
 export default function ShipmentsScreen() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -79,8 +80,18 @@ export default function ShipmentsScreen() {
     handleCloseBottomSheet();
   };
 
+  const onCancelFiltering = () => {
+    console.log("onCancelFiltering");
+    setSelectedStatusFilters([]);
+    setStatusFilters([]);
+    handleCloseBottomSheet();
+  };
+
   const handleCloseBottomSheet = () => bottomSheetRef.current?.close();
   const handleOpenBottomSheet = () => bottomSheetRef.current?.expand();
+
+  const shipments = data.message;
+  const shipmentStatuses = statuses.message;
 
   return (
     <SafeAreaView style={styles.container}>
@@ -108,20 +119,26 @@ export default function ShipmentsScreen() {
       </View>
 
       <Shipments
-        shipments={data.message}
+        shipments={shipments}
         refetch={refetch}
         isRefetching={isFetching}
       />
 
-      <CustomBottomSheet ref={bottomSheetRef} snaps={["40%"]}>
-        {statuses?.message.map((status, index) => (
-          <Pressable
-            key={`${status.idx}-${index}`}
-            onPress={() => onSelectStatusFilter(status.name)}
-          >
-            <Text>{status.name}</Text>
-          </Pressable>
-        ))}
+      <CustomBottomSheet
+        ref={bottomSheetRef}
+        snaps={["40%"]}
+        title="Filters"
+        headerBtnEndText="Done"
+        headerBtnEndAction={onSelectedStatusFilters}
+        showHeaderBorder
+        headerBtnStartText="Clear"
+        headerBtnStartAction={onCancelFiltering}
+      >
+        <ShipmentStatusFilters
+          statuses={shipmentStatuses}
+          selectedStatusFilters={selectedStatusFilters}
+          onSelectStatusFilter={onSelectStatusFilter}
+        />
       </CustomBottomSheet>
     </SafeAreaView>
   );

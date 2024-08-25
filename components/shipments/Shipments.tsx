@@ -2,6 +2,7 @@ import { View, StyleSheet, FlatList } from "react-native";
 import React from "react";
 import { Shipment as ShipmentType } from "@/types/shipment";
 import { Colors } from "@/constants/Colors";
+import { SHIPMENT_TITLE } from "@/constants/app";
 import Title from "../typography/Title";
 import Shipment from "./Shipment";
 import CheckBox from "../CheckBox";
@@ -16,7 +17,7 @@ const Shipments = ({ shipments, refetch, isRefetching }: ShipmentsProps) => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Title variant={24}>Shipments</Title>
+        <Title variant={24}>{SHIPMENT_TITLE}</Title>
         <CheckBox
           title="Mark All"
           isChecked={false}
@@ -25,15 +26,19 @@ const Shipments = ({ shipments, refetch, isRefetching }: ShipmentsProps) => {
           textStyle={styles.checkboxText}
         />
       </View>
-      <FlatList
-        data={shipments}
-        renderItem={({ item, index }) => (
-          <Shipment shipment={item} key={`${item.idx}-${index}`} />
-        )}
-        keyExtractor={(item) => `${item.idx}-${item.name}`}
-        onRefresh={refetch}
-        refreshing={isRefetching}
-      />
+      {shipments.length === 0 ? (
+        <Title variant={16}>No Shipments Found</Title>
+      ) : (
+        <FlatList
+          data={shipments}
+          renderItem={({ item, index }) => (
+            <Shipment shipment={item} key={`${item.idx}-${index}`} />
+          )}
+          keyExtractor={(item) => `${item.idx}-${item.name}`}
+          onRefresh={refetch}
+          refreshing={isRefetching}
+        />
+      )}
     </View>
   );
 };

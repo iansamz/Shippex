@@ -44,7 +44,7 @@ const Shipment = ({ shipment }: ShipmentProps) => {
           <Text style={styles.detailsAssignment}>
             {API_SHIPMENT_LIST_DOCTYPE}
           </Text>
-          <Title variant={18}>{shipment.name}</Title>
+          <Title variant={14}>{shipment.name}</Title>
           <Text style={styles.detailsCities}>{cities}</Text>
         </View>
       </View>

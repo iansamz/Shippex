@@ -5,28 +5,46 @@ import BottomSheet, {
   BottomSheetView,
   useBottomSheet,
 } from "@gorhom/bottom-sheet";
-import { ChevronDownLeftIcon } from "./icons";
 import { Colors } from "@/constants/Colors";
+import Title from "./typography/Title";
 export type Ref = BottomSheet;
 
 interface Props {
   title?: string;
   snaps?: string[];
   children?: React.ReactNode;
+  headerBtnEndText?: string;
+  headerBtnEndAction?: () => void;
+  showHeaderBorder?: boolean;
+  headerBtnStartText?: string;
+  headerBtnStartAction?: () => void;
 }
 
 const CloseBtn = () => {
   const { close } = useBottomSheet();
 
   return (
-    <Pressable style={styles.closeBtn} onPress={() => close()}>
-      <Text style={styles.closeBtnText}>Cancel</Text>
+    <Pressable style={styles.btn} onPress={() => close()}>
+      <Text style={styles.btnText}>Cancel</Text>
     </Pressable>
   );
 };
 
 const CustomBottomSheet = forwardRef<Ref, Props>(
-  ({ children, snaps = ["25", "50", "75"], ...props }, ref) => {
+  (
+    {
+      children,
+      title,
+      headerBtnEndText,
+      headerBtnEndAction,
+      showHeaderBorder,
+      headerBtnStartText,
+      headerBtnStartAction,
+      snaps = ["25", "50", "75"],
+      ...props
+    },
+    ref,
+  ) => {
     const snapPoints = useMemo(() => snaps, [snaps]);
     const renderBackdrop = useCallback(
       (props: any) => (
@@ -49,8 +67,28 @@ const CustomBottomSheet = forwardRef<Ref, Props>(
         {...props}
       >
         <BottomSheetView style={styles.contentContainer}>
-          <View style={styles.headerContainer}>
-            <CloseBtn />
+          <Title style={styles.title}>{title}</Title>
+          <View
+            style={[
+              styles.headerContainer,
+              {
+                borderBottomWidth: showHeaderBorder ? 2 : 0,
+                borderBottomColor: Colors.ritual100,
+              },
+            ]}
+          >
+            {headerBtnStartText && headerBtnStartAction ? (
+              <Pressable style={styles.btn} onPress={headerBtnStartAction}>
+                <Text style={styles.btnText}>{headerBtnStartText}</Text>
+              </Pressable>
+            ) : (
+              <CloseBtn />
+            )}
+            {headerBtnEndText && headerBtnEndAction && (
+              <Pressable style={styles.btn} onPress={headerBtnEndAction}>
+                <Text style={styles.btnText}>{headerBtnEndText}</Text>
+              </Pressable>
+            )}
           </View>
           {children}
         </BottomSheetView>
@@ -66,16 +104,25 @@ const styles = StyleSheet.create({
   },
   headerContainer: {
     width: "100%",
-    paddingVertical: 5,
+    paddingTop: 5,
+    paddingBottom: 10,
     paddingHorizontal: 10,
-    justifyContent: "flex-start",
+    justifyContent: "space-between",
+    alignItems: "center",
+    flexDirection: "row",
   },
-  closeBtn: {
+  title: {
+    position: "absolute",
+    top: 2,
+    width: "100%",
+    textAlign: "center",
+  },
+  btn: {
     flexDirection: "row",
     alignItems: "flex-start",
     justifyContent: "flex-start",
   },
-  closeBtnText: {
+  btnText: {
     color: Colors.primary,
     fontSize: 17,
     marginLeft: 5,
