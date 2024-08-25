@@ -56,7 +56,7 @@ const LoginForm = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 10,
+    padding: 14,
   },
   headerContainer: {
     flex: 0,
@@ -67,10 +67,10 @@ const styles = StyleSheet.create({
     color: Colors.ritual500,
   },
   formContainer: {
-    marginTop: 20,
+    marginTop: 40,
     flex: 1,
     justifyContent: "flex-start",
-    gap: 10,
+    gap: 25,
   },
   buttonContainer: {
     width: "100%",

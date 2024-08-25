@@ -1,5 +1,5 @@
 import { useCallback, useRef, useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { debounce } from "lodash";
 import BottomSheet from "@gorhom/bottom-sheet";
@@ -14,7 +14,8 @@ import Button from "@/components/Button";
 import { AddScanIcon, FilterIcon } from "@/components/icons";
 import CustomBottomSheet from "@/components/CustomBottomSheet";
 import Shipments from "@/components/shipments/Shipments";
-import ShipmentStatusFilters from "../../components/shipments/ShipmentStatusFilters";
+import ShipmentStatusFilters from "@/components/shipments/ShipmentStatusFilters";
+import PageLoading from "@/components/PageLoading";
 
 export default function ShipmentsScreen() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -43,11 +44,7 @@ export default function ShipmentsScreen() {
   const bottomSheetRef = useRef<BottomSheet>(null);
 
   if (isLoading || statusIsLoading) {
-    return (
-      <SafeAreaView>
-        <Text>Loading...</Text>
-      </SafeAreaView>
-    );
+    return <PageLoading />;
   }
 
   if (error || !data?.message || statusError || !statuses?.message) {
@@ -146,7 +143,7 @@ export default function ShipmentsScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 14,
+    paddingHorizontal: 14,
     backgroundColor: "#fff",
   },
   btnsContainer: {
