@@ -13,6 +13,7 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { store } from "@/store";
+import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -36,20 +37,25 @@ export default function RootLayout() {
   return (
     <Provider store={store}>
       <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-        <GestureHandlerRootView>
-          <Stack>
-            <Stack.Screen name="index" options={{ headerShown: false }} />
-            <Stack.Screen
+        <BottomSheetModalProvider>
+          <GestureHandlerRootView>
+            <Stack>
+              <Stack.Screen name="index" options={{ headerShown: false }} />
+              {/* <Stack.Screen
               name="login"
               options={{
-                headerShown: false,
+                title: "",
+                headerStyle: {
+                  backgroundColor: "transparent",
+                },
                 presentation: "modal",
               }}
-            />
-            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-            <Stack.Screen name="+not-found" />
-          </Stack>
-        </GestureHandlerRootView>
+            /> */}
+              <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+              <Stack.Screen name="+not-found" />
+            </Stack>
+          </GestureHandlerRootView>
+        </BottomSheetModalProvider>
       </ThemeProvider>
     </Provider>
   );

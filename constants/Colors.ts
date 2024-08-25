@@ -6,18 +6,25 @@
 const tintColorLight = "#0a7ea4";
 const tintColorDark = "#fff";
 
-export const royalBlue100 = "#E6E9F0";
-export const royalBlue500 = "#4169E1";
-export const royalBlue600 = "#2F50C1";
+const royalBlue100 = "#E6E9F0";
+const royalBlue500 = "#4169E1";
+const royalBlue600 = "#2F50C1";
 
-export const ritual100 = "#F4F2F8";
-export const ritual200 = "#EAE7F2";
-export const ritual300 = "#CDCAD9";
-export const ritual400 = "#A7A3B3";
-export const ritual500 = "#757281";
+const ritual100 = "#F4F2F8";
+const ritual200 = "#EAE7F2";
+const ritual300 = "#CDCAD9";
+const ritual400 = "#A7A3B3";
+const ritual500 = "#757281";
 
 export const Colors = {
   primary: royalBlue600,
+  royalBlue100,
+  royalBlue500,
+  ritual100,
+  ritual200,
+  ritual300,
+  ritual400,
+  ritual500,
   light: {
     text: "#11181C",
     background: "#fff",

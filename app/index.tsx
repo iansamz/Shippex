@@ -1,21 +1,36 @@
 import { View, StyleSheet, Image } from "react-native";
-import React from "react";
-import { Link } from "expo-router";
+import React, { useRef, useCallback } from "react";
+import { BottomSheetModal } from "@gorhom/bottom-sheet";
+
 import { Colors } from "@/constants/Colors";
 import Button from "@/components/Button";
+import CustomBottomSheet from "@/components/CustomBottomSheet";
+import LoginForm from "@/components/LoginForm";
+
 const logo = require("@/assets/images/logo-full.png");
 
 const Home = () => {
+  const bottomSheetRef = useRef<BottomSheetModal>(null);
+
+  const handlePresentModalPress = useCallback(() => {
+    bottomSheetRef.current?.expand();
+  }, []);
+
   return (
     <View style={styles.container}>
       <View style={styles.logoContainer}>
         <Image source={logo} style={styles.logo} />
       </View>
       <View style={styles.buttonContainer}>
-        <Link href="/login" asChild>
-          <Button title="Login" variant="secondary" />
-        </Link>
+        <Button
+          title="Login"
+          variant="secondary"
+          onPress={handlePresentModalPress}
+        />
       </View>
+      <CustomBottomSheet ref={bottomSheetRef} snaps={["90%"]}>
+        <LoginForm />
+      </CustomBottomSheet>
     </View>
   );
 };
