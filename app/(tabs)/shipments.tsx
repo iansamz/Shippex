@@ -93,7 +93,7 @@ export default function ShipmentsScreen() {
   const shipmentStatuses = statuses.message;
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.container} edges={["right", "left", "top"]}>
       <Header />
       <Intro />
       <Input
