@@ -43,10 +43,6 @@ You can start developing by editing the files inside the **app** directory. This
 
 
 ## Tasks
-
-- [ ] Add Tests
-- [ ] Add storybook
-- [ ] Splash Screen
 - [ ] Components design
     - [ ] Input  - Placeholder
     - [x] Filter Modal
@@ -59,13 +55,15 @@ You can start developing by editing the files inside the **app** directory. This
     - [x] Shipments
     - [x] Profile -minimal
     - [x] Login
-    - [x] Splash
+    - [ ] Splash
 - [x] Functionality
     - [x] Search
     - [x] Filter
     - [x] Logout
     - [x] Login
-- [x] Add eslint , husky, lint-stage, prettier
+- [ ] Add Tests
+- [ ] Add storybook
+- [x] Add eslint , husky, lint-staged, prettier
 - [x] Add React Redux and RTK
 - [x] Add icons and images
 - [x] Setup routes
